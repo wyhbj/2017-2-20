@@ -1,0 +1,97 @@
+正则：
+	规则，没听说过，不太明白，只看了一点点
+	^\w+@[a-z0-9]+(\.[a-z]+){1,3}$
+	火星文
+	正则表达式：
+	规则，主要用来操作（擅长匹配模糊范围）字符串的，它处理起来更高效，但是维护部方便，可读性不高。
+	1.找出下面字符串中所有的数字,并且放到一个数组中。
+	 	思路：
+	 		先循环整个字符串
+	 		查看每个字符是否是为数字
+	 			isNaN  parseInt()
+	 		如果是就把这个字符放到数组中
+	var str = 'dh1sids8a23 d21 32dsaxzd89wej1kl7qw9';
+	var arr = [];
+	for(var i=0;i<str.length;i++){
+		if(!isNaN(parseInt(str[i]))){
+			arr.push(str[i]);
+		}
+	}
+	 2.找出下面字符串中所有的数字（也包括连续的）,并且放到一个数组中。
+	 	思路：
+	 		新建一个空的字符串，只要当前字符为数字就+=这个变量
+	var str = 'dh1sids8a23 d21 32dsaxzd89wej1kl7qw9';
+	var arr = [];
+	var temp = '';
+	for(var i=0;i<str.length;i++){
+		//如果是数字
+		if(!isNaN(parseInt(str[i]))){
+			temp+=str[i];
+		}else{
+			if(temp){
+				arr.push(temp);
+				temp = '';
+			}
+			
+		}
+	}
+	if(temp){
+		arr.push(temp);
+		temp = '';
+	}
+	console.log(str.match(/\d+/g));
+	两种写法：
+			第一种（标准写法）：
+				new RegExp(规则,修饰符);
+			
+			第二种：（简写）
+				/规则/
+	test:检测是否正则匹配的内容.
+		如果正则成立那么返回一个布尔值。
+	正则.test(string);
+	\d  代表*一个*数字
+	修饰符：
+	i ->  忽略大小写。
+	字符串方法 - match:
+		将匹配到的字符放到一个数组中。
+	string.match(正则);
+		当匹配到的字符只有一个的时候，会显示出多个属性
+			index: 匹配字符的位置
+			input: 所有内容
+			而length为1
+		量词：
+			+
+				最小是一个，最大是无限
+		修饰符：
+			g   查找全局
+			
+			str.match(/\d+/g)
+			
+		正则的特性：
+			懒惰模式：让他找几个他一定不会多找
+			贪婪模式：无限制的查找
+	var str = 'das37213dsa321hjkh321321';
+	console.log(str.match(/\d+/g))
+	字符串的方法  - search
+	找到（可以指定也可以正则匹配）匹配的字符位置
+	sting.search(字符串||正则);
+	var str = 'aacabca523c';
+	console.log(str.search(/\d/));//7
+	字符串方法 - replace
+		对字符串替换操作
+	string.replace(要替换谁||可以用正则,替换成什么||函数);
+	返回值为替换好的字符串。
+	var str = '123456';
+	console.log(str.replace('4','④'));
+
+	var str = 'ds1aj1dh2s3a1';
+	console.log(str.replace(/\d/g,'数字'));
+	2017年2月17日
+	\D  非数字
+	子项 - ()
+		从左往右数
+	var str2 = str.replace(/(\d+)\D+(\d+)\D+(\d+)/,function($0,$1,$2,$3){
+		//console.log($1,$2,$3);
+		return $1 + '年' + $2 + '月' + $3 + '日';
+	});
+	console.log(str2)
