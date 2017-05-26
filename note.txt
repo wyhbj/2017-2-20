@@ -197,4 +197,35 @@
 		|my| |name| |is| |...|
 		不适用于中文
 	.   任意字符除了\n
+粗略版的面向对象  ->  构造函数 -> 工厂方式
+	function Teacher(name,age){
+		var obj = {}; //原材料
+		obj.name = name;
+		obj.age = age; //加工
+		obj.say = function(){
+			alert(this.name);
+		}
+		
+		return obj; //出厂
+	}
+	
+	var t1 = new Teacher('nizp',18);
+	//console.log(t1);
+	t1.say();
+	属性：名字前是有主的
+	变量:变量名前面没有主的
+	非空对象上才能加属性或者方法。
+	函数:名前面没有主的
+	方法:名字前是有主的
+	var arr = [1,2,3];
+	function fn(){ //函数
+		alert(this);
+	}
+	
+	arr.fn = function(){ //方法
+		alert(this);
+	}
+	
+	arr.fn();
+	fn();
 	
